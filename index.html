@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <style>
+		 body{
+		 	text-align: center;
+		 }
+		 	.box{
+		 		width:100px;
+		 		height:100px;
+		 		background: pink;
+		 		margin:0 5px;
+		 	}
+		 	.main{
+		 		display: flex;
+		 		justify-content: center;
+		 	}
+		 	.showbox{
+		 		width:100px;
+		 		height:100px;
+		 		border: 2px dashed #ccc;
+		 		margin:0 auto;
+		 	
+		 	}
+		 	.box:nth-child(1){
+		 		background: deepskyblue;
+		 	}
+		 	.box:nth-child(2){
+		 		background: hotpink;
+		 	}
+		 	.box:nth-child(3){
+		 		background: yellowgreen;
+		 	}
+		 </style>
+	</head>
+	<body>
+		<h1>支持拖拽的元素</h1>
+		<img src="./images/lf.jpg" alt="" />
+		<img src="./images/nm.jpg" alt="" />
+		<img src="./images/sl.jpg" alt="" />
+		<h1>需要开启拖拽的元素</h1>
+		<div class='main'>
+			<div class="box" draggable="true"></div>
+			<div class="box" draggable="true"></div>
+			<div class="box" draggable="true"></div>
+		</div>
+		
+		<h1></h1>
+		<div class="showbox"></div>
+		<script>
+			var moveImg; 
+			var showbox = document.querySelector('.showbox');
+			showbox.ondragover= function(e){
+				e.preventDefault();
+			}
+			showbox.ondrop= function(){
+				console.log("a");
+				showbox.style.background = 'url('+moveImg.src+') no-repeat center / cover';
+			}
+			var imgs = document.querySelectorAll('img');
+			for(var i=0 ;i<imgs.length;i++){
+				imgs[i].ondragstart = function(){
+					moveImg = this;
+					console.log(moveImg);
+				}
+			}
+		</script>
+	</body>
+</html>
